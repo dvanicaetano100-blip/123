@@ -1,0 +1,13 @@
+{
+  "name": "luna-voz-online",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Protótipo da Luna com IA online, microfone contínuo e voz no navegador",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

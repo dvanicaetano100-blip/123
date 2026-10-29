@@ -1,0 +1,33 @@
+LUNA — VOZ CONTÍNUA + IA ONLINE (SEM UNITY)
+
+O QUE ESTE PROJETO FAZ
+- Interface futurista roxa e azul.
+- Alternância entre dois estilos ilustrativos de avatar (ainda não é um modelo 3D real).
+- Conversa com IA online usando a API da OpenAI.
+- Microfone em modo contínuo usando Web Speech API, quando suportada pelo navegador.
+- Respostas faladas usando a voz instalada no Android; pitch mais alto para aproximar o estilo anime.
+- Chave da API mantida no servidor, nunca no HTML.
+
+IMPORTANTE
+- Isto é um projeto para rodar em um servidor Node.js, não um APK pronto.
+- O microfone geralmente exige HTTPS (ou localhost). Abrir o HTML diretamente do ZIP não serve para o modo contínuo.
+- A voz feminina estilo anime é uma aproximação: a voz real depende das vozes instaladas/disponíveis no navegador. Para voz anime dedicada, será necessário integrar um provedor TTS compatível.
+- O uso da API da OpenAI é separado da assinatura ChatGPT e pode gerar cobrança conforme o uso.
+- Não publique a chave da API nem envie o arquivo .env para ninguém.
+- O servidor básico incluído é uma base de protótipo. Antes de disponibilizar publicamente, acrescente autenticação, limites de uso e HTTPS.
+
+COMO CONFIGURAR EM UM COMPUTADOR
+1. Instale Node.js 18 ou superior.
+2. Descompacte este ZIP.
+3. Configure a variável OPENAI_API_KEY no ambiente do servidor. Opcionalmente defina OPENAI_MODEL (padrão: gpt-4.1-mini) e PORT.
+4. Execute `npm start` na pasta do projeto.
+5. Abra http://localhost:3000 no computador.
+6. Para usar no POCO X6 fora do computador, hospede o projeto num serviço que execute Node.js e forneça HTTPS. Depois abra o endereço HTTPS no Chrome e permita o microfone.
+
+EXEMPLO DE VARIÁVEIS
+OPENAI_API_KEY=sua_chave_secreta
+OPENAI_MODEL=gpt-4.1-mini
+PORT=3000
+
+SEGURANÇA
+A chave deve ficar somente nas variáveis de ambiente do servidor. Não coloque chave em public/index.html, JavaScript do navegador, APK, GitHub público ou mensagens. O endpoint de chat precisa de autenticação/limites se for acessível publicamente.
