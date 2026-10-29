@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#100d2c"><title>Luna — voz e IA online</title>
+<style>
+:root{--purple:#9b72ff;--blue:#48c9ff;--text:#f7f4ff;--muted:#bcb7d9}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 50% 0%,#29205d 0%,#10102b 42%,#09091c 80%);color:var(--text);font-family:system-ui,-apple-system,Segoe UI,sans-serif;min-height:100dvh}
+main{max-width:680px;margin:auto;padding:16px 14px 28px}header{display:flex;align-items:center;gap:11px;margin:4px 0 15px}.logo{width:45px;height:45px;border-radius:15px;background:linear-gradient(135deg,var(--purple),var(--blue));display:grid;place-items:center;font-size:25px;box-shadow:0 0 28px #865dff55}h1{font-size:23px;margin:0}.sub{font-size:12px;color:var(--muted)}.status{margin-left:auto;font-size:11px;color:#c8baff;border:1px solid #7061b7;border-radius:99px;padding:6px 8px}
+.stage{position:relative;overflow:hidden;border:1px solid #7061b766;border-radius:25px;min-height:335px;background:linear-gradient(160deg,#20174b,#11152e 70%,#10102a);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:18px;box-shadow:0 18px 50px #0005}
+.orbit{position:absolute;width:225px;height:225px;border:1px solid #a78bfa55;border-radius:50%;animation:spin 18s linear infinite}.orbit:before,.orbit:after{content:"";position:absolute;width:8px;height:8px;border-radius:50%;background:var(--blue);box-shadow:0 0 15px var(--blue)}.orbit:before{top:26px;left:35px}.orbit:after{bottom:22px;right:20px;background:var(--purple)}@keyframes spin{to{transform:rotate(360deg)}}
+.avatar{position:relative;z-index:1;width:180px;height:215px;display:flex;align-items:center;flex-direction:column;filter:drop-shadow(0 12px 25px #7c4dff35);animation:float 3s ease-in-out infinite}@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
+.hair{position:absolute;top:14px;width:150px;height:150px;background:linear-gradient(120deg,#16162a,#3e286c 65%,#151a3b);border-radius:48% 48% 40% 40%;z-index:1}.face{position:absolute;top:33px;width:115px;height:129px;border-radius:48% 48% 45% 45%;background:linear-gradient(120deg,#ffe0d9,#e8b6c9);z-index:2;border:2px solid #f7d8ff66}.fringe{position:absolute;top:21px;z-index:3;width:128px;height:62px;background:linear-gradient(130deg,#21183f,#533581);border-radius:60% 55% 45% 30%;clip-path:polygon(0 0,100% 0,93% 65%,75% 46%,67% 100%,48% 48%,35% 88%,25% 48%,7% 76%)}
+.ear{position:absolute;top:85px;width:16px;height:28px;border-radius:50%;background:#e9b6c7;z-index:1}.ear.left{left:24px}.ear.right{right:24px}.eye{position:absolute;top:77px;width:21px;height:28px;background:linear-gradient(#342477,#3b9eff);border-radius:50%;z-index:4;border:2px solid #fff;box-shadow:0 0 9px #4c8bff66}.eye:after{content:"";position:absolute;top:4px;left:5px;width:6px;height:7px;border-radius:50%;background:white}.eye.left{left:33px}.eye.right{right:33px}.blush{position:absolute;top:110px;width:21px;height:8px;border-radius:50%;background:#ff8eaf77;z-index:4}.blush.left{left:18px}.blush.right{right:18px}.mouth{position:absolute;top:121px;left:50%;transform:translateX(-50%);width:22px;height:9px;border-bottom:3px solid #a53c6d;border-radius:0 0 50% 50%;z-index:5}.neck{position:absolute;top:151px;width:32px;height:25px;background:#e8b4c4;z-index:1}.body{position:absolute;top:166px;width:125px;height:67px;border-radius:50% 50% 18% 18%;background:linear-gradient(110deg,#e8e7ff,#9381d7 48%,#252c68);z-index:2;border:1px solid #c5b7ff}.body:after{content:"";position:absolute;left:50%;top:9px;transform:translateX(-50%);width:25px;height:25px;border-radius:50%;border:2px solid #5edfff;box-shadow:0 0 14px #5edfff66}
+.robot .hair{background:linear-gradient(120deg,#c9d9ee,#6d78a8 60%,#30375b);border:2px solid #9aeaff}.robot .face{background:linear-gradient(120deg,#e6f4ff,#b6c8df);border-color:#9deaff}.robot .fringe{background:linear-gradient(130deg,#d4e6ff,#6277b9)}.robot .ear{background:#b8cce4;border:1px solid #70eaff}.robot .eye{background:linear-gradient(#3e2b98,#2ed6ff);box-shadow:0 0 12px #40ddff}.robot .body{background:linear-gradient(110deg,#e7faff,#8ba8d8 48%,#263c79);border-color:#5ce7ff}
+.stage h2{z-index:2;margin:4px 0 2px;font-size:22px}.stage p{z-index:2;margin:0;text-align:center;color:#d1c9f7;font-size:13px}
+.panel{background:#15142e;border:1px solid #ffffff17;border-radius:19px;padding:13px;margin-top:12px}label{display:block;color:var(--muted);font-size:12px;margin:0 0 7px}button,input,select{font:inherit;color:var(--text);background:#0d0c22;border:1px solid #6255a0;border-radius:12px;padding:11px;outline:none}button{font-weight:650;background:linear-gradient(120deg,#7852dd,#287dc4);cursor:pointer;border:0}button:disabled{opacity:.5}button.secondary{background:#28254b;border:1px solid #5e568d}.row{display:flex;gap:8px}.row>*{flex:1;min-width:0}select{width:100%;margin-bottom:10px}#log{min-height:65px;max-height:210px;overflow:auto;font-size:14px;line-height:1.45;margin-bottom:10px}.msg{padding:9px 10px;border-radius:12px;background:#211d43;margin:6px 0;white-space:pre-wrap;overflow-wrap:anywhere}.msg.user{background:#203754}.small{font-size:11px;color:var(--muted);line-height:1.45;margin-top:9px}.listening{box-shadow:0 0 0 2px #54edbc,0 0 24px #54edbc55}.speaking .mouth{animation:talk .22s infinite alternate}@keyframes talk{to{height:18px;width:27px;background:#9d426d}}footer{text-align:center;font-size:11px;color:#8882b0;padding:15px 4px}
+</style></head>
+<body><main>
+<header><div class="logo">🌙</div><div><h1>Luna</h1><div class="sub">Voz contínua • IA online</div></div><div class="status" id="status">● Verificando…</div></header>
+<section class="stage" id="stage"><div class="orbit"></div><div class="avatar" id="avatar"><div class="hair"></div><div class="ear left"></div><div class="ear right"></div><div class="face"></div><div class="fringe"></div><div class="eye left"></div><div class="eye right"></div><div class="blush left"></div><div class="blush right"></div><div class="mouth"></div><div class="neck"></div><div class="body"></div></div><h2>Oi, Dvani! 💜</h2><p id="mood">Toca em “Iniciar conversa” e vamos bater papo!</p></section>
+<section class="panel">
+<label for="look">Aparência</label><select id="look"><option value="anime">Anime estilizado</option><option value="robot">Humanoide futurista</option></select>
+<div class="row"><button id="start">🎙️ Iniciar conversa</button><button class="secondary" id="stop" disabled>⏹ Parar</button></div>
+<div class="small" id="voiceStatus">A conversa contínua usa reconhecimento de fala do navegador. É necessário HTTPS ou localhost e permissão do microfone.</div>
+</section>
+<section class="panel"><label>Conversa</label><div id="log"><div class="msg">Luna: Dvani, finalmente! Eu tava aqui praticando minhas piadas no espelho. O espelho pediu demissão. 😂</div></div><div class="row"><input id="message" placeholder="Ou escreva aqui..." autocomplete="off"><button id="send">Enviar</button></div><div class="small">A chave da IA fica no servidor, não neste navegador. A conversa é enviada ao serviço de IA para gerar respostas.</div></section>
+<footer>Luna • protótipo de voz • roxo e azul • sem Unity</footer></main>
+<script>
+const $=id=>document.getElementById(id), log=$('log');
+let history=[], recognition=null, listening=false, speaking=false, busy=false, restartTimer=null;
+const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
+$('look').onchange=e=>{$('avatar').classList.toggle('robot',e.target.value==='robot');$('mood').textContent=e.target.value==='robot'?'Modo androide ativado. Piadas carregadas. 🤖':'Modo anime ativado. Charme em 120%! ✨'};
+function add(who,text,cls=''){let d=document.createElement('div');d.className='msg '+cls;d.textContent=who+': '+text;log.appendChild(d);log.scrollTop=log.scrollHeight}
+async function checkHealth(){try{let r=await fetch('/api/health');let d=await r.json();$('status').textContent=d.configured?'● IA configurada':'● Falta configurar IA';$('status').style.color=d.configured?'#9ef5d0':'#ffd38d'}catch{$('status').textContent='● Servidor indisponível'}}
+async function askLuna(text){
+ if(busy)return;busy=true;$('send').disabled=true;$('mood').textContent='Pensando numa resposta boa… (e numa piada ruim) 💭';
+ history.push({role:'user',content:text});history=history.slice(-14);
+ try{
+  const r=await fetch('/api/chat',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages:history})});
+  const data=await r.json();if(!r.ok)throw new Error(data.error||'Não consegui falar com a IA.');
+  history.push({role:'assistant',content:data.reply});history=history.slice(-14);add('Luna',data.reply);$('mood').textContent='Sua vez! Tô ouvindo. 💜';await speak(data.reply);
+ }catch(e){add('Sistema',e.message);$('mood').textContent='Algo deu errado. Confira a configuração e tente novamente.'}
+ finally{busy=false;$('send').disabled=false;if(listening&&!speaking)restartRecognition()}
+}
+function sendText(){let v=$('message').value.trim();if(!v)return;$('message').value='';add('Você',v,'user');askLuna(v)}
+$('send').onclick=sendText;$('message').addEventListener('keydown',e=>{if(e.key==='Enter')sendText()});
+function chooseVoice(){let vs=speechSynthesis.getVoices();return vs.find(v=>/pt[-_]BR/i.test(v.lang)&&/female|feminina|luciana|camila|fernanda|brasil/i.test(v.name))||vs.find(v=>/pt[-_]BR/i.test(v.lang))||vs.find(v=>/^pt/i.test(v.lang))||null}
+function speak(text){return new Promise(resolve=>{
+ if(!('speechSynthesis'in window)){ $('voiceStatus').textContent='Seu navegador não oferece voz sintetizada.';resolve();return}
+ speechSynthesis.cancel();speaking=true;$('stage').classList.add('speaking');if(recognition){try{recognition.stop()}catch{}}
+ const u=new SpeechSynthesisUtterance(text);u.lang='pt-BR';u.rate=.98;u.pitch=1.28;let v=chooseVoice();if(v)u.voice=v;
+ u.onend=u.onerror=()=>{speaking=false;$('stage').classList.remove('speaking');resolve();if(listening)restartRecognition()};speechSynthesis.speak(u);
+ })}
+function restartRecognition(){if(!listening||speaking||busy||!recognition)return;clearTimeout(restartTimer);restartTimer=setTimeout(()=>{try{recognition.start()}catch{}},450)}
+function startListening(){
+ if(!SR){$('voiceStatus').textContent='Este navegador não oferece reconhecimento de fala. Teste o Chrome atualizado via HTTPS.';return}
+ listening=true;$('start').disabled=true;$('stop').disabled=false;$('stage').classList.add('listening');$('mood').textContent='Pode falar comigo, Dvani! 🎙️';$('voiceStatus').textContent='Microfone ativo. Quando eu terminar de falar, vou voltar a ouvir.';
+ recognition=new SR();recognition.lang='pt-BR';recognition.interimResults=false;recognition.continuous=true;recognition.maxAlternatives=1;
+ recognition.onresult=e=>{let result=e.results[e.results.length-1];if(!result.isFinal)return;let text=result[0].transcript.trim();if(text){add('Você',text,'user');askLuna(text)}};
+ recognition.onerror=e=>{if(e.error==='not-allowed'||e.error==='service-not-allowed'){listening=false;stopListeningUI();$('voiceStatus').textContent='Permissão do microfone negada. Autorize o microfone nas configurações do navegador.'}else if(e.error!=='no-speech'&&e.error!=='aborted')$('voiceStatus').textContent='Problema no microfone: '+e.error+'. Tente reiniciar a conversa.'};
+ recognition.onend=()=>{if(listening&&!speaking&&!busy)restartRecognition()};
+ try{recognition.start()}catch(e){$('voiceStatus').textContent='Não consegui iniciar. Abra em HTTPS/localhost e permita o microfone.'}
+}
+function stopListeningUI(){$('start').disabled=false;$('stop').disabled=true;$('stage').classList.remove('listening');}
+function stopListening(){listening=false;clearTimeout(restartTimer);if(recognition){try{recognition.stop()}catch{}}speechSynthesis.cancel();speaking=false;$('stage').classList.remove('speaking');stopListeningUI();$('mood').textContent='Papo pausado. Quando quiser, é só voltar! 💜';$('voiceStatus').textContent='Microfone desligado.'}
+$('start').onclick=startListening;$('stop').onclick=stopListening;
+checkHealth();if(!SR)$('voiceStatus').textContent='Reconhecimento de fala não disponível neste navegador. Use Chrome atualizado via HTTPS.';
+</script></body></html>
